@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechCrush Landing Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-wrapper">
+      <div class="theme-switcher">
+        <button id="theme-toggle" type="button">Light mode</button>
+      </div>
+      <section class="hero">
+        <div class="hero-content reveal">
+          <p class="eyebrow">Launch your next big idea</p>
+          <h1>Build amazing digital experiences with TechCrush.</h1>
+          <p class="hero-copy">
+            A sleek, modern landing page crafted for startups, SaaS products,
+            and creative launches. Fast, responsive, and built to convert.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#features">Get Started</a>
+            <a class="btn btn-secondary" href="#about">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-image reveal">
+          <img src="bg_logo.jpg" alt="TechCrush brand image" />
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <article class="reveal">
+          <h2>Fast setup</h2>
+          <p>
+            Launch a polished product page in minutes with minimal effort and
+            clean design.
+          </p>
+        </article>
+        <article class="reveal">
+          <h2>Responsive design</h2>
+          <p>
+            Looks great on desktops, tablets, and phones with a layout that
+            adapts beautifully.
+          </p>
+        </article>
+        <article class="reveal">
+          <h2>Built for conversion</h2>
+          <p>
+            Highlight what matters most with crisp typography, clear calls to
+            action, and a bold hero.
+          </p>
+        </article>
+      </section>
+
+      <section id="about" class="about">
+        <div class="reveal">
+          <h2>Designed for every stage</h2>
+          <p>
+            From idea to launch, TechCrush helps you present your product with
+            confidence and clarity. Use this page to introduce your brand,
+            showcase features, and capture interest.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="reveal">
+            <strong>24/7</strong>
+            <span>Support ready</span>
+          </div>
+          <div class="reveal">
+            <strong>100%</strong>
+            <span>Responsive layout</span>
+          </div>
+          <div class="reveal">
+            <strong>Fast</strong>
+            <span>Performance-first</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const themeToggle = document.getElementById("theme-toggle");
+      const root = document.documentElement;
+
+      const setTheme = (theme) => {
+        root.dataset.theme = theme;
+        themeToggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+        localStorage.setItem("theme", theme);
+      };
+
+      const savedTheme = localStorage.getItem("theme");
+      const defaultTheme =
+        savedTheme ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      setTheme(defaultTheme);
+
+      themeToggle.addEventListener("click", () => {
+        setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+      });
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+          rootMargin: "0px 0px -10% 0px",
+        },
+      );
+
+      revealElements.forEach((element) => observer.observe(element));
+
+      window.addEventListener("load", () => {
+        requestAnimationFrame(() => {
+          document
+            .querySelectorAll(".hero .reveal")
+            .forEach((element, index) => {
+              setTimeout(() => element.classList.add("visible"), index * 80);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
