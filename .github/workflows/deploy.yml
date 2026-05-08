@@ -1,0 +1,54 @@
+name: CI/CD - Landing Page
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: read
+
+jobs:
+  # ==================== CI JOB ====================
+  ci:
+    name: Validate HTML/CSS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: nklmndr/htmlhint-action@v1
+        with:
+          files: "**/*.html"
+
+      - name: Check for broken links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: "--verbose --no-progress './**/*.html'"
+
+  # ==================== CD JOB ====================
+  deploy:
+    name: Deploy to EC2
+    needs: ci                    # Only run if CI passes
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            ./ $EC2_USER@$EC2_HOST:$TARGET_DIR/
+
+          echo "✅ Deployment completed!"
