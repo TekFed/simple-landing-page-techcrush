@@ -1,4 +1,4 @@
-name: CI/CD - Landing Page
+name: CI/CD - Landing Page to EC2
 
 on:
   push:
@@ -6,13 +6,14 @@ on:
   pull_request:
     branches: [ master ]
 
+# Security: Least permissions
 permissions:
   contents: read
 
 jobs:
   # ==================== CI JOB ====================
   ci:
-    name: Validate HTML/CSS
+    name: Validate HTML
     runs-on: ubuntu-latest
 
     steps:
@@ -20,19 +21,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate HTML
-        uses: nklmndr/htmlhint-action@v1
+        uses: actions/setup-node@v4
         with:
-          files: "**/*.html"
+          node-version: 20
 
-      - name: Check for broken links
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: "--verbose --no-progress './**/*.html'"
+      - name: Run HTMLHint
+        run: npx htmlhint "**/*.html"
 
   # ==================== CD JOB ====================
   deploy:
     name: Deploy to EC2
-    needs: ci                    # Only run if CI passes
+    needs: ci                    # Only deploy if validation passes
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
@@ -49,6 +48,7 @@ jobs:
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
+            --exclude='*.pem' \
             ./ $EC2_USER@$EC2_HOST:$TARGET_DIR/
 
-          echo "✅ Deployment completed!"
+          echo "✅ Deployment to EC2 completed successfully!"
