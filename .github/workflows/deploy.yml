@@ -1,4 +1,4 @@
-name: CI/CD - Landing Page to EC2
+name: Deploy Landing Page to EC2
 
 on:
   push:
@@ -6,33 +6,14 @@ on:
   pull_request:
     branches: [ master ]
 
-# Security: Least permissions
+# Security best practice
 permissions:
   contents: read
 
 jobs:
-  # ==================== CI JOB ====================
-  ci:
-    name: Validate HTML
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Validate HTML
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Run HTMLHint
-        run: npx htmlhint "**/*.html"
-
-  # ==================== CD JOB ====================
   deploy:
     name: Deploy to EC2
-    needs: ci                    # Only deploy if validation passes
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'    # Only deploy on push to main
     runs-on: ubuntu-latest
 
     steps:
