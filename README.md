@@ -34,10 +34,14 @@ That's it! No server or build process required.
 
 ```
 simple-landing-page-techcrush/
-├── index.html          # Main page markup
-├── styles.css          # Styles and theme variables
-├── bg_logo.jpg         # Hero image asset
-└── README.md           # This file
+├── index.html                       # Main page markup
+├── styles.css                       # Styles and theme variables
+├── bg_logo.jpg                      # Hero image asset
+├── .github
+         └── workflows
+                  └──deploy.yml      # CI/CD pipeline for Github Actions
+├── .gitignore                       # files to ignore
+└── README.md                        # This file
 ```
 
 ## 🛠 Technologies Used
