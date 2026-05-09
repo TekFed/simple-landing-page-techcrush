@@ -3,23 +3,33 @@ name: Deploy Landing Page to EC2
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-# Security best practice
 permissions:
   contents: read
 
 jobs:
   deploy:
     name: Deploy to EC2
-    if: github.ref == 'refs/heads/master'    # Only deploy on push to main
     runs-on: ubuntu-latest
+    # Only deploy on push to master
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 1. Set up the SSH Key in the runner
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: unnecessary # We will bypass this in the rsync command
+          if_key_exists: fail
+
+      # 2. Deploy using rsync
       - name: Deploy to EC2
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
@@ -27,6 +37,7 @@ jobs:
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
         run: |
           rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='*.pem' \
