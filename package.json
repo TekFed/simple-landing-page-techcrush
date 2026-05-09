@@ -1,0 +1,9 @@
+{
+  "name": "edtech-academy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "python scripts/build.py",
+    "test": "python scripts/check-dist.py"
+  }
+}

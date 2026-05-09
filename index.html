@@ -3,81 +3,230 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechCrush Landing Page</title>
+    <title>TekFed Academy</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <header class="site-header">
+      <a class="brand" href="#">TekFed Academy</a>
+      <nav class="site-nav">
+        <a href="#programs">Programs</a>
+        <a href="#features">Why Us</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="theme-toggle" type="button">Light mode</button>
+    </header>
+
     <main class="page-wrapper">
-      <div class="theme-switcher">
-        <button id="theme-toggle" type="button">Light mode</button>
-      </div>
       <section class="hero">
         <div class="hero-content reveal">
-          <p class="eyebrow">Launch your next big idea</p>
-          <h1>Build amazing digital experiences with TechCrush.</h1>
+          <p class="eyebrow">Learn with confidence</p>
+          <h1>Empower your career with modern EdTech training.</h1>
           <p class="hero-copy">
-            A sleek, modern landing page crafted for startups, SaaS products,
-            and creative launches. Fast, responsive, and built to convert.
+            Join hands-on programs, expert mentorship, and project-driven
+            courses designed for educators, learning designers, and founders.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#features">Get Started</a>
-            <a class="btn btn-secondary" href="#about">Learn More</a>
+            <a class="btn btn-primary" href="#programs">Explore Programs</a>
+            <a class="btn btn-secondary" href="#contact">Join Waitlist</a>
+          </div>
+          <div class="hero-figures">
+            <div>
+              <strong>12+</strong>
+              <span>Cohorts launched</span>
+            </div>
+            <div>
+              <strong>95%</strong>
+              <span>Placement success</span>
+            </div>
+            <div>
+              <strong>1500+</strong>
+              <span>Graduates</span>
+            </div>
           </div>
         </div>
         <div class="hero-image reveal">
-          <img src="bg_logo.jpg" alt="TechCrush brand image" />
+          <img src="bg_logo.jpg" alt="TekFed Academy hero image" />
+        </div>
+      </section>
+
+      <section id="programs" class="programs">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Programs</p>
+          <h2>Career-ready learning paths for education innovators.</h2>
+          <p>
+            Choose the track that fits your goals and start building impactful
+            learning experiences with confidence.
+          </p>
+        </div>
+
+        <div class="program-grid">
+          <article class="program-card reveal">
+            <span class="program-label">Upskill</span>
+            <h3>Instructional Design</h3>
+            <p>
+              Create engaging online and blended learning experiences using
+              proven design principles.
+            </p>
+            <ul>
+              <li>4-week bootcamp</li>
+              <li>Portfolio project</li>
+              <li>Mentor review</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Apply Now</a>
+          </article>
+
+          <article class="program-card reveal">
+            <span class="program-label">Build</span>
+            <h3>Learning Technology</h3>
+            <p>
+              Master LMS tools, authoring software, and digital platforms used
+              by modern education teams.
+            </p>
+            <ul>
+              <li>Hands-on labs</li>
+              <li>Tool-based workshops</li>
+              <li>Community support</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Apply Now</a>
+          </article>
+
+          <article class="program-card reveal">
+            <span class="program-label">Launch</span>
+            <h3>Education Entrepreneurship</h3>
+            <p>
+              Learn to launch courses, create training products, and build
+              scalable learning businesses.
+            </p>
+            <ul>
+              <li>Market strategy</li>
+              <li>Business planning</li>
+              <li>Growth coaching</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Apply Now</a>
+          </article>
         </div>
       </section>
 
       <section id="features" class="features">
-        <article class="reveal">
-          <h2>Fast setup</h2>
+        <article class="feature-card reveal">
+          <h2>Why TekFed Academy?</h2>
           <p>
-            Launch a polished product page in minutes with minimal effort and
-            clean design.
+            We combine mentorship, practical projects, and career guidance to
+            help you move from learning to doing.
           </p>
         </article>
-        <article class="reveal">
-          <h2>Responsive design</h2>
+        <article class="feature-card reveal">
+          <h3>Expert instructors</h3>
           <p>
-            Looks great on desktops, tablets, and phones with a layout that
-            adapts beautifully.
+            Learn from leaders who have designed programs for top institutions
+            and startups.
           </p>
         </article>
-        <article class="reveal">
-          <h2>Built for conversion</h2>
+        <article class="feature-card reveal">
+          <h3>Real outcomes</h3>
           <p>
-            Highlight what matters most with crisp typography, clear calls to
-            action, and a bold hero.
+            Complete portfolio-ready work you can share with employers and
+            clients.
+          </p>
+        </article>
+        <article class="feature-card reveal">
+          <h3>Flexible learning</h3>
+          <p>
+            Balance live sessions and self-paced work while staying supported by
+            the community.
           </p>
         </article>
       </section>
 
-      <section id="about" class="about">
-        <div class="reveal">
-          <h2>Designed for every stage</h2>
-          <p>
-            From idea to launch, TechCrush helps you present your product with
-            confidence and clarity. Use this page to introduce your brand,
-            showcase features, and capture interest.
-          </p>
+      <section id="instructors" class="instructors">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Instructors</p>
+          <h2>Mentors who build modern learning programs.</h2>
         </div>
-        <div class="about-stats">
-          <div class="reveal">
-            <strong>24/7</strong>
-            <span>Support ready</span>
+        <div class="instructor-grid">
+          <article class="instructor-card reveal">
+            <strong>Dr. Maya Patel</strong>
+            <span>Instructional Design Lead</span>
+            <p>
+              Education strategist with experience in digital course design and
+              learning research.
+            </p>
+          </article>
+          <article class="instructor-card reveal">
+            <strong>Jason Kim</strong>
+            <span>Learning Technology Strategist</span>
+            <p>
+              Specializes in learning platforms, product design, and
+              user-centered education technology.
+            </p>
+          </article>
+          <article class="instructor-card reveal">
+            <strong>Sophie Lee</strong>
+            <span>EdTech Founder</span>
+            <p>
+              Founder coach helping educators launch online learning products
+              and scalable programs.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Testimonials</p>
+          <h2>Stories from learners who leveled up.</h2>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card reveal">
+            <p>
+              “The mentorship and real projects gave me the confidence to launch
+              my own training platform.”
+            </p>
+            <strong>Emma R., Graduate</strong>
+          </article>
+          <article class="testimonial-card reveal">
+            <p>
+              “I learned practical EdTech skills that I used immediately in my
+              role.”
+            </p>
+            <strong>Liam S., Instructional Designer</strong>
+          </article>
+          <article class="testimonial-card reveal">
+            <p>
+              “This academy helped me shift my career into learning product
+              strategy.”
+            </p>
+            <strong>Ava M., Learning Technologist</strong>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="contact-panel reveal">
+          <div>
+            <p class="eyebrow">Get started</p>
+            <h2>Ready to join the next cohort?</h2>
+            <p>
+              Reach out to our admissions team for program details, schedules,
+              and scholarships.
+            </p>
           </div>
-          <div class="reveal">
-            <strong>100%</strong>
-            <span>Responsive layout</span>
-          </div>
-          <div class="reveal">
-            <strong>Fast</strong>
-            <span>Performance-first</span>
-          </div>
+          <a class="btn btn-primary" href="mailto:hello@teKFedacademy.com"
+            >Contact Admissions</a
+          >
         </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <p>
+        © 2026 TekFed Academy. Empowering educators and learning innovators.
+      </p>
+    </footer>
+
     <script>
       const themeToggle = document.getElementById("theme-toggle");
       const root = document.documentElement;
